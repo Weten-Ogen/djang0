@@ -1,0 +1,23 @@
+{% extends "polls/layout.html" %}
+{% block head %}
+    <title>Index</title>
+{% endblock %}
+
+{% block body %}
+    {% if q %}
+        <ul>
+            {% for question in q %}
+            <li > 
+                <a href="/polls/{{ question.id }}/">
+                    {{ question.question_txt }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <li>No polls available</li>
+
+    {% endif %}
+
+{% endblock %}
