@@ -4,20 +4,18 @@
 {% endblock %}
 
 {% block body %}
-    {% if q %}
+    {% if questions %}
         <ul>
-            {% for question in q %}
+            {% for question in questions %}
             <li > 
                 <a href="/polls/{{ question.id }}/">
-                    {{ question.question_txt }}
+                    {{ question.question_txt }} {{ question.pub_date}}
                 </a>
             </li>
             {% endfor %}
         </ul>
 
     {% else %}
-        <li>No polls available</li>
-
+        <p>No polls available</p>
     {% endif %}
-
 {% endblock %}

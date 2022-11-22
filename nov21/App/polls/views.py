@@ -1,17 +1,19 @@
 from django.shortcuts import render
-from .models import Question
+from .models import Question, Choice
 # Create your views here.
 
 # index
 def index(request):
-    q = Question.objects.all()
     return render(request, "polls/index.html",{
-        q: "q"
+        "questions" : Question.objects.order_by('-pub_date')
     })
 
 # details
-def detail(request, q_id):
-    pass
+def detail(request, question_id):
+    question =  Question.objects.get(pk=question_id)
+    return render(request, "polls/detail.html",{
+        "question":question
+    })
 
 # results
 def result(request, q_id):

@@ -1,0 +1,9 @@
+{%  extends "polls/layout.html" %}
+
+{% block body %}
+    <h1>{{ question.question_txt }}</h1>
+    {%  for choice in question_set.all %}
+        <li> {{ choice.choice_txt }}</li>
+    {% endfor  %}
+
+{% endblock %}
