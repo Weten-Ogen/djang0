@@ -8,8 +8,8 @@
         <ul>
             {% for question in questions %}
             <li > 
-                <a href="/polls/{{ question.id }}/">
-                    {{ question.question_txt }} {{ question.pub_date}}
+                <a href="{% url 'detail' question.id %}">
+                    {{ question.question_txt }} 
                 </a>
             </li>
             {% endfor %}
