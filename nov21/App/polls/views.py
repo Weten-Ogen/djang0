@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Question, Choice
 from django.urls import reverse
+from .models import Question, Choice
+
 # Create your views here.
 
 # index
@@ -17,9 +18,6 @@ def detail(request, question_id):
         "question":question
     })
 
-# results
-def result(request, q_id):
-    ...
 
 #Votes
 def vote(request, question_id):
@@ -34,3 +32,14 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return render(request, reverse('poll:result.html',args=(question.id,)))
+
+
+
+
+
+# results
+def result(request, question_id):
+    question =Question.objects.get(pk='question_id')
+    return render(request, 'polls/results.html', {
+        "question": question
+    })
