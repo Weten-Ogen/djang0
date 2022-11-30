@@ -13,17 +13,18 @@ def index(request):
 
 # details
 def detail(request, question_id):
-    question =  Question.objects.get(pk=question_id)
+    question =Question.objects.get(pk=question_id)
     return render(request, "polls/detail.html",{
-        "question":question
+        "question":question,
+        "question_id": question.id
     })
 
 
 #Votes
 def vote(request, question_id):
-    question = Question.choice_set.get(pk='question_id')
+    question =Question.choice_set.get(pk='question_id')
     try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+        selected_choice = question.choice.get(pk=request.POST['choice'])
     except(KeyError, Choice.DoesNotExist):
         return render(request, "polls/detail.html",{
             "question" : question
@@ -31,7 +32,7 @@ def vote(request, question_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        return render(request, reverse('poll:result.html',args=(question.id,)))
+        return render(request, reverse('result'))
 
 
 
