@@ -1,4 +1,4 @@
-"""trydjango URL Configuration
+"""sociame URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -16,10 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_view,name='index'),
-    path('about/', about_view)
-    
 ]
