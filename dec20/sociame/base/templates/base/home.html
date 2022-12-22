@@ -1,18 +1,21 @@
-{% extends "base/layout.html" %}
-
+{% extends 'layout.html' %}
 
 {% block body %}
-{% for room in rooms %}
-    <div class="room">
-        <a href="{% url 'base:room' room.id %}">{{ room.name }}</a></h1>
-        <img src=""class="room-img" alt="">
-        <span class="room-host">@{{room.host}}</span><span class="room-name">{{room.name}}</span>
-    
-        <h1>{{room.topic}}</h1>
-        
-        <secton>{{room.description}}</secton>
-    </div>
-    <br>
+    <h1>home page</h1>
 
-{% endfor %}
+    <h1><a href="{% url 'base:create-room' %}">Create room</a></h1>
+
+    <div>
+        {% for room in rooms %}
+            <div>
+                <span><a href="{% url 'base:update-room' room.id %}">Edit Room</a></span>
+                 <span><a href="{% url 'base:delete-room' room.id %}">Delete Room</a></span>
+                 <br>
+                <div>@{{room.host.username}}</div>
+                <a href="{% url 'base:room'  room.id %}">{{ room}}</a>
+                <div>{{room.topic}}</div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
 {% endblock %}
