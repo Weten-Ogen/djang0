@@ -1,21 +1,60 @@
 {% extends 'layout.html' %}
 
+
 {% block body %}
+    <style>
+        body{
+            margin: 0;
+            padding:5px;
+            font-size:2rem;
+        }
+        .home-container{
+            display:grid;
+            grid-template-columns: 1fr 3fr;
+            gap:2rem;
+        }
+        .rooms {
+            width: 60%;
+            
+        }
+        .rooms-items{
+            font-size: 2 rem;
+            margin: 14px;
+            padding:15px;
+            
+        }
+    </style>
     <h1>home page</h1>
+    
 
     <h1><a href="{% url 'base:create-room' %}">Create room</a></h1>
 
-    <div>
-        {% for room in rooms %}
-            <div>
-                <span><a href="{% url 'base:update-room' room.id %}">Edit Room</a></span>
-                 <span><a href="{% url 'base:delete-room' room.id %}">Delete Room</a></span>
-                 <br>
-                <div>@{{room.host.username}}</div>
-                <a href="{% url 'base:room'  room.id %}">{{ room}}</a>
-                <div>{{room.topic}}</div>
+    <div class="home-container">
+
+            <div class="sidebar">
+                <h3>Browse topics</h3>
+                <hr>
+                <h2><a href="{% url 'base:home' %}">All</a></h2>
+                {% for topic in topics %}
+                    <h2><a href="{% url 'base:home' %}?q={{topic.name}}">{{ topic }}</a></h2>
+                {% endfor %}
             </div>
-            <hr>
-        {% endfor %}
+            <div class="rooms">
+                {% for room in rooms %}
+                <div class="rooms-items">
+                    <span><a href="{% url 'base:update-room' room.id %}">Edit Room</a></span>
+                     <span><a href="{% url 'base:delete-room' room.id %}">Delete Room</a></span>
+                     <br>
+                    <div>@{{room.host.username}}</div>
+                    <a href="{% url 'base:room'  room.id %}">{{ room}}</a>
+                    <div>{{room.topic}}</div>
+                </div>
+                <hr>
+                
+            {% endfor %}
+            </div>
+       
+
+       
     </div>
 {% endblock %}

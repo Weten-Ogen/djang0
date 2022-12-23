@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect ,reverse
-from .models import Room
+from .models import Room, Topic
 from .forms import RoomForm
 
 # Create your views here.
 
 # INDEX
 def home(request):
-    rooms = Room.objects.all()
+    q= request.GET.get('q') if request.GET.get('q') != None else ''
+    rooms = Room.objects.filter(topic__name__icontains=q)
+    topics = Topic.objects.all()
     context = { 
-        'rooms': rooms
+        'rooms': rooms,
+        'topics': topics
     }
     return render(request, 'base/home.html', context)
 
@@ -22,7 +25,7 @@ def room(request,pk):
     
     return render(request, 'base/room.html', context)
 
-# CREATE A  ROOM
+# CREATE ROOM
 def createroom(request):
     form = RoomForm()
     if request.method == 'POST':

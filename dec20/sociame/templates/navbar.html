@@ -3,7 +3,9 @@
    <a href="#"><img src="" class="logo" alt="logo"></a>
    <ul>
     <li><a href="{% url 'base:home' %}" class="nav-item">Home</a></li>
-   
    </ul>
+   <form method="GET" action="{% url 'base:home' %}">
+      <input type="text" name="q" placeholder="Search Rooms...">
+   </form>
 </nav>
 <hr/>
