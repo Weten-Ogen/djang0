@@ -4,8 +4,16 @@
    <ul>
     <li><a href="{% url 'base:home' %}" class="nav-item">Home</a></li>
    </ul>
+   {% if request.user.is_authenticated %}
+   <a href="{% url 'base:logout' %}">Logout</a>
+   {% else %}
+   <a href="{% url 'base:login' %}">Login</a>
+
+
+   {% endif %}
    <form method="GET" action="{% url 'base:home' %}">
       <input type="text" name="q" placeholder="Search Rooms...">
    </form>
+
 </nav>
 <hr/>

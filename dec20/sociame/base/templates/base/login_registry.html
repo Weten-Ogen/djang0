@@ -1,0 +1,85 @@
+{%  extends "layout.html" %}
+
+{% block body %}
+<style>
+.login-forms{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.login-forms div{
+    margin-top : 2.2rem;
+    
+}
+.username{
+    width: 80%;
+    font-size:2rem;
+    
+}
+.username  input{
+    width: 50vw;
+    padding:16px 32px;
+    border-radius: 11px;
+    outline:none;
+    
+    
+}
+.username label{
+    padding:8px 16px;
+    display:block;
+    
+}
+
+.password{
+    width: 80%;
+    font-size:2rem;
+    margin: 0 auto;
+}
+.password input{
+    width: 50vw;
+    padding:16px 32px;
+    border-radius: 11px;
+    outline:none;
+    
+}
+
+.password label{
+    display:block;
+    padding:8px 16px;
+    border-radius: 11px;
+    outline:none;
+}
+.login-forms submit-btn{
+    width: 80%;
+    margin: 0 auto;
+}
+.login-forms .submit-btn input{
+    width: 50vw;
+    font-size:1rem;
+    border-radius: 11px;
+    padding:8px 16px;
+    outline:none;
+    border:none;
+    margin-top: 20px;
+}
+</style>
+<div>
+    <form method="POST" action="" class="login-forms">
+        {% csrf_token %}
+        <div class="username">
+            <label for="username">UserName</label>
+            <input type="text"  name="username"  placeholder="Enter Username"/>
+        </div>
+        <div class="password">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Enter Password"/>
+        </div>
+        <div class="submit-btn">
+            <input type="submit" value="Login" />
+        </div>
+        
+    </form>
+</div>
+{% endblock %}
